@@ -1,0 +1,15 @@
+create table Branch(Branch_namealter varchar(20), Branch_city varchar(10));
+create table Account(Account_no number(10), Branch_name varchar(10), Balance number(20));
+create table Depositor(Customer_name varchar(20), Account_no number(10));
+create table Customer(Customer_name varchar(20), Customer_city varchar(10), Customer_street varchar(10));
+create table Borrower(Customer_name varchar(20), Loan_no number(10));
+create table Loan(Loan_no number(10), Branch_name varchar(10), Amount number(20));
+alter table Account modify(primary key(Account_no));
+alter table Depositor modify(foreign key(Account_no) references Account(Account_no));
+alter table Borrower modify(primary key(Loan_no));
+alter table Loan modify(foreign key(Loan_no) references Borrower(Loan_no));
+
+select Customer_name from Borrower where Loan_no = 420
+select Branch_name from Branch where Branch_city in ('Agra')
+select Balance, Account_no from Account where Balance between 5000 and 50000
+select Account_no as A_no from Account
